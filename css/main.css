@@ -1,0 +1,29 @@
+body{
+  font-size:20px;
+  background:lightgrey;
+  margin: 30px;
+  font-family: "Adelphe", serif;
+  transition: all 4s linear;
+}
+
+img{
+	width: 100%;
+}
+
+main{
+	overflow-y:scroll;
+	height: calc(100vh - 60px);
+}
+
+main p.info{
+	font-size: 1em;
+}
+
+#images-container figure, #texts-container p {
+	position: absolute;
+}
+
+
+
+
+
