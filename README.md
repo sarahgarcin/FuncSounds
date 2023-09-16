@@ -45,7 +45,7 @@ Joue une note
 **note** = fréquence en Hz de la note, 440 étant un *La*, plus on descend dans les fréquences, plus la note est basse, plus on monte, plus elle est aigue  
 **gain** = volume entre 0 et 1  
 **duration** = durée de le note en seconde  
-*loop et tempo sont optionnels*
+*loop et tempo sont optionnels*  
 **loop** = nombre de fois que le son va être joué en boucle  
 **tempo** = tempo en bpm (beats par minute)  
 
@@ -90,10 +90,10 @@ Ajoute une image à partir d'un fichier et la positionne dans la page
 ### addVideo(file, top, left, width, mute);
 Ajoute une vidéo à partir d'un fichier et la positionne dans la page
 
-**file** = chemin du fichier vidéo (mp4 ou ogg)  
+**file** = chemin du fichier vidéo (mp4 ou ogg)    
 **top** = position de la vidéo depuis le bord haut de la page, en px  
 **left** = position de la vidéo  depuis le bord gauche de la page, en px  
-**width** = largeur de la vidéo , en px (la hauteur s'ajuste automatiquement)
+**width** = largeur de la vidéo , en px (la hauteur s'ajuste automatiquement)  
 **mute** = *true* ou *false*, enlever le son de la vidéo (ou pas)  
 
 #### Exemple
@@ -107,7 +107,7 @@ Ajoute du texte et le positionne dans la page
 **fontsize** = taille de la typo, en px  
 **top** = position du texte depuis le bord haut de la page, en px  
 **left** = position du texte depuis le bord gauche de la page, en px  
-**color** = couleur du texte en hexadecimal ou en css colors
+**color** = couleur du texte en hexadecimal ou en css colors  
 **font** = choix de la typographie  
 
 #### Exemple
