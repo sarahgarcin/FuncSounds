@@ -12,6 +12,26 @@ async function init(){
 }
 
 function handleKeyDown(e){
+
+  if(e.key == 'n'){
+    playNote("sine", 200, 0.1, 0.2, 10, 30);
+    changeBackground(shuffle("aquamarine, pink, yellow, brown, chartreuse"));
+    addVideo("images/station.mp4", random(100, 500), random(100, 500), 200, true);
+  }
+
+  if(e.key == 'b'){
+    playSample("samples/over_3.mp3", 1, 1);
+    addImage("images/chamber-of-ecstasy.png", 0, 0, 1280);
+  }
+
+  if(e.key == 'v'){
+    playMelody("sawtooth", [100, 200, 100, 200, 150, 200], 0.1, 0.1);
+    addText("YOUPI", 100, random(0, 800), random(0, 1280), "black");
+    messyEffect(['p', 'figure'], -5, 5);
+  }
+
+
+
   if(e.key == 'a'){
     playSample("samples/over_3.mp3", 1, 1);
     addText("TUUUUUUT", 40, random(0, 800), random(0, 1280), shuffle('aquamarine, lightblue, yellow, blue, pink, magenta'));
@@ -65,8 +85,9 @@ function handleKeyDown(e){
 
 
   // functions visuelles
+
   if(e.key == 'w'){
-    addImage('images/paradis.jpg', random(0, 800), random(0, 1280), random(100, 400));
+    addImage(shuffle('images/bush_02.png, images/flower_01.png, images/flower_02.png, images/grasses_01.png, images/plant_01.png, images/plant_02.png'), random(0, 800), random(0, 1280), random(100, 400));
   }
 
   if(e.key == 'x'){
@@ -74,7 +95,7 @@ function handleKeyDown(e){
   }
 
   if(e.key == 'c'){
-    addImage(shuffle('images/paradis.jpg, images/vns-matrix.jpg, images/lane.jpg, images/computer.png'), random(0, 800), random(0, 1280), random(100, 400));
+    addImage(shuffle('images/birds.png, images/chamber-of-ecstasy.png, images/clouds02.png, images/ring.png'), random(0, 800), random(0, 1280), random(100, 400));
   }
 
 }

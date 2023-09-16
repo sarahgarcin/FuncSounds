@@ -7,7 +7,7 @@ Il a été développé pour des cours d'introduction à la programmation à l'EN
 - Ouvrir le fichier index.html dans votre navigateur préféré
 
 ## Fonctionnement
-- Ouvrir le fichier main.js
+- Ouvrir le fichier js > main.js
 - Dans la fonction `function handleKeyDown(e){}`, ajouter des évènement *appuyer sur une touche*, lier à une fonction prédéfinie (voir ci-dessous).
 
 ### Exemple : 
@@ -87,15 +87,28 @@ Ajoute une image à partir d'un fichier et la positionne dans la page
 #### Exemple
 `addImage('image.jpg', random(0, 800), random(0, 1280), random(100, 400));`
 
+### addVideo(file, top, left, width, mute);
+Ajoute une vidéo à partir d'un fichier et la positionne dans la page
 
-### addText(text, fontsize, top, left, color)
+**file** = chemin du fichier vidéo (mp4 ou ogg)  
+**top** = position de la vidéo depuis le bord haut de la page, en px  
+**left** = position de la vidéo  depuis le bord gauche de la page, en px  
+**width** = largeur de la vidéo , en px (la hauteur s'ajuste automatiquement)
+**mute** = *true* ou *false*, enlever le son de la vidéo (ou pas)  
+
+#### Exemple
+`addVideo('video.mp4', random(0, 800), random(0, 1280), random(100, 400), true);`
+
+
+### addText(text, fontsize, top, left, color, font)
 Ajoute du texte et le positionne dans la page
 
 **text** = texte à ajouter  
 **fontsize** = taille de la typo, en px  
 **top** = position du texte depuis le bord haut de la page, en px  
 **left** = position du texte depuis le bord gauche de la page, en px  
-**color** = couleur du texte en hexadecimal ou en css colors  
+**color** = couleur du texte en hexadecimal ou en css colors
+**font** = choix de la typographie  
 
 #### Exemple
 `addText("TUUUUUUT", 40, random(0, 800), random(0, 1280), 'aquamarine');`

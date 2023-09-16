@@ -19,7 +19,9 @@ main p.info{
 	font-size: 1em;
 }
 
-#images-container figure, #texts-container p {
+#images-container figure, 
+#texts-container p, 
+#videos-container video{
 	position: absolute;
 }
 
