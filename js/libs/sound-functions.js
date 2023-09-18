@@ -27,19 +27,6 @@ function playSample(file, gain, pitch, loop, interval) {
     displayDebugText(textToDisplay, id);
   }
 
-  console.log(
-    "path:",
-    URL,
-    "loop:",
-    numLoops,
-    "gain:",
-    audioGain,
-    "pitch:",
-    audioPitch,
-    "time:",
-    playbackTime
-  );
-
   function playLoopedAudio(audio, loopsLeft) {
     if (loopsLeft <= 0) {
       // document.getElementById(id).remove();
@@ -95,7 +82,6 @@ function playNote(wave, note, audioGain, duration, loop, tempo) {
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
   if (loop !== undefined && tempo !== undefined) {
-    console.log("here");
     for (let i = 0; i < numLoops; i++) {
       const beatTime =
         audioCtx.currentTime + i * secondsPerBeat * audioDuration;
@@ -109,8 +95,6 @@ function playNote(wave, note, audioGain, duration, loop, tempo) {
       );
     }
   } else {
-    console.log("there");
-
     playOscillator(
       audioCtx,
       oscillatorType,
@@ -122,28 +106,32 @@ function playNote(wave, note, audioGain, duration, loop, tempo) {
   }
 }
 
-function playMelody(wave, melody, audioGain, duration, loop, tempo) {
+function playMelody(wave, melody, rythms, audioGain, loop, tempo) {
   // Default values
   let oscillatorType = wave !== undefined ? wave : "sine";
   let amplitude = audioGain !== undefined ? audioGain : 1;
-  let audioDuration = duration !== undefined ? duration : 1;
   let numLoops = loop !== undefined ? loop : 1;
   let beatsPerMinute = tempo !== undefined ? tempo : 40;
   let secondsPerBeat = 60 / beatsPerMinute;
 
+  if (melody.length !== rythms.length) {
+    console.error("Melody lenght and rythms lenght do not match");
+    return;
+  }
+
   if (displayText) {
     let id =
-      wave + melody[0] + amplitude + audioDuration + numLoops + beatsPerMinute;
+      wave + melody[0] + rythms[0] + amplitude + numLoops + beatsPerMinute;
 
     let textToDisplay =
       "function: playMelody - wave: " +
       wave +
       " - notes: " +
       melody +
+      " - rythmes: " +
+      rythms +
       "- gain: " +
       amplitude +
-      " - duration: " +
-      audioDuration +
       " - loop: " +
       numLoops +
       " - tempo: " +
@@ -157,34 +145,37 @@ function playMelody(wave, melody, audioGain, duration, loop, tempo) {
 
   let currentTime = audioCtx.currentTime;
 
-  for (let i = 0; i < melody.length; i++) {
-    const frequency = melody[i][0];
-    const duration = melody[i][1];
+  if (loop === undefined || tempo === undefined) {
+    console.error("Loop or Tempo not defined, Can not play melody");
+    return;
+  }
 
-    if (loop !== undefined && tempo !== undefined) {
-      for (let j = 0; j < numLoops; j++) {
-        const beatTime = currentTime + j * secondsPerBeat * audioDuration;
-        playOscillator(
-          audioCtx,
-          oscillatorType,
-          beatTime,
-          audioDuration,
-          amplitude,
-          frequency
-        );
-      }
-    } else {
+  const melodyDuration =
+    rythms.reduce((acc, current) => {
+      acc += current;
+      return acc;
+    }, 0) * secondsPerBeat;
+
+  console.log("Duration: ", melodyDuration);
+
+  for (let j = 0; j < numLoops; j++) {
+    for (let i = 0; i < melody.length; i++) {
+      const frequency = melody[i];
+      const rythm = rythms[i];
+
+      console.log(currentTime);
+
       playOscillator(
         audioCtx,
         oscillatorType,
         currentTime,
-        audioDuration,
+        rythm * secondsPerBeat,
         amplitude,
         frequency
       );
-    }
 
-    currentTime += secondsPerBeat * audioDuration;
+      currentTime += secondsPerBeat * rythm;
+    }
   }
 }
 
@@ -238,47 +229,6 @@ function displayDebugText(textToDisplay, id) {
   displaySample.innerHTML = textToDisplay;
   main.prepend(displaySample);
 }
-
-// function shuffle(list, chances) {
-//   if (!Array.isArray(list)) {
-//     list = list.split(",");
-//   }
-
-//   if(chances){
-//     // Calculate the total chance (sum of all chances)
-//     const totalChance = Object.values(chances).reduce((sum, chance) => sum + chance, 0);
-
-//     // Generate a random number between 0 and the totalChance
-//     const randomValue = Math.random() * totalChance;
-
-//     let cumulativeChance = 0;
-//     for(let i=0; i<list.length; i++){
-//       const chance = chances[list[i]];
-//       cumulativeChance += chance;
-//       console.log(cumulativeChance, randomValue);
-//       if(randomValue <= cumulativeChance) {
-//         console.log('pouet', list[i]);
-//         return list[i];
-//       }
-//     }
-
-//     // for (const [index, value] of list) {
-//     //   const chance = chances[value] || 0; // Get the chance for this value (default to 0 if not specified)
-//     //   cumulativeChance += chance;
-
-//     //   if (randomValue <= cumulativeChance) {
-//     //     return value;
-//     //   }
-//     // }
-
-//     // // Return null if no value is selected (shouldn't normally happen unless chances don't add up to 1)
-//     // return null;
-//   }
-//   else{
-//     let val = list[Math.floor(Math.random() * list.length)];
-//     return val
-//   }
-// }
 
 // Slugify a string
 function slugify(str) {

@@ -1,5 +1,11 @@
 let displayText = true;
 
+let fromNoteToFreq = {
+  silence: 0,
+  la1: 440,
+  la2: 500,
+};
+
 // launch init fuction
 init();
 
@@ -13,7 +19,7 @@ async function init() {
 
 function handleKeyDown(e) {
   if (e.key == "n") {
-    playNote("sine", 200, 0.81, 0.2, 10, 30);
+    playNote("sine", 200, 0.5, 4.0, 4, 10);
     changeBackground(shuffle("aquamarine, pink, yellow, brown, chartreuse"));
     addVideo(
       "images/station.mp4",
@@ -30,9 +36,21 @@ function handleKeyDown(e) {
   }
 
   if (e.key == "v") {
-    playMelody("sawtooth", [100, 200, 100, 200, 150, 200], 0.1, 0.1);
-    addText("YOUPI", 100, random(0, 800), random(0, 1280), "black");
-    messyEffect(["p", "figure"], -5, 5);
+    playMelody(
+      "sawtooth",
+      [
+        fromNoteToFreq.la1,
+        fromNoteToFreq.la2,
+        fromNoteToFreq.silence,
+        fromNoteToFreq.la2,
+      ],
+      [1.0, 1.0, 1.0, 1.0],
+      0.1,
+      2,
+      200
+    );
+    //addText("YOUPI", 100, random(0, 800), random(0, 1280), "black");
+    //messyEffect(["p", "figure"], -5, 5);
   }
 
   if (e.key == "a") {
