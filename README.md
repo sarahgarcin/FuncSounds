@@ -62,7 +62,7 @@ Joue une mélodie (plusieurs notes à la suite)
 **wave** = le type de courbe - sine, square, triangle ou sawtooth  
 **melody** = liste de notes sous forme de tableau : [100, 120, 100, 150, 120]  
 **gain** = volume entre 0 et 1  
-**rythm** = durée de des notes en fraction d'un temps sous forme de tableau : [1.0,2.0,0.5] ce qui correspond a [noir, blanche, croche]  
+**rythm** = durée de des notes en fraction d'un temps sous forme de tableau : [1.0,2.0,0.5] ce qui correspond à [noir, blanche, croche]  
 *loop et tempo sont optionnels*    
 **tempo** = tempo en bpm (beats par minute)
 **loop** = nombre de fois que la mélodie va être jouée en boucle
