@@ -1,11 +1,5 @@
 let displayText = true;
 
-let fromNoteToFreq = {
-  silence: 0,
-  la1: 440,
-  la2: 500,
-};
-
 // launch init fuction
 init();
 
@@ -39,15 +33,24 @@ function handleKeyDown(e) {
     playMelody(
       "sawtooth",
       [
-        fromNoteToFreq.la1,
-        fromNoteToFreq.la2,
+        fromNoteToFreq.C4,
+        fromNoteToFreq.C4,
+        fromNoteToFreq.C4,
+        fromNoteToFreq.D4,
+        fromNoteToFreq.E4,
+        fromNoteToFreq.D4,
         fromNoteToFreq.silence,
-        fromNoteToFreq.la2,
+        fromNoteToFreq.C4,
+        fromNoteToFreq.E4,
+        fromNoteToFreq.D4,
+        fromNoteToFreq.D4,
+        fromNoteToFreq.C4,
+        fromNoteToFreq.silence,
       ],
-      [1.0, 1.0, 1.0, 1.0],
+      [1.0, 1.0, 1.0, 1.0, 2.0, 1.5, 0.5, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0],
       0.1,
-      2,
-      200
+      100,
+      2
     );
     //addText("YOUPI", 100, random(0, 800), random(0, 1280), "black");
     //messyEffect(["p", "figure"], -5, 5);

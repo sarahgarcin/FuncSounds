@@ -106,7 +106,7 @@ function playNote(wave, note, audioGain, duration, loop, tempo) {
   }
 }
 
-function playMelody(wave, melody, rythms, audioGain, loop, tempo) {
+function playMelody(wave, melody, rythms, audioGain, tempo, loop) {
   // Default values
   let oscillatorType = wave !== undefined ? wave : "sine";
   let amplitude = audioGain !== undefined ? audioGain : 1;
